@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>رپورتاژینو | خرید رپورتاژ و شارژ اعتبار</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0f0f0f; --muted:#6f6f6f;
+      --accent:#ffd400; --accent-ink:#0b0b0b;
+      --border:#e9e9e9; --card:#fff;
+      --shadow:0 10px 30px rgba(0,0,0,.06);
+      --shadow-sm:0 6px 20px rgba(0,0,0,.05);
+      --radius:18px; --maxw:1100px;
+      --success:#0ea568; --danger:#d92d20;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;background:var(--bg);color:var(--fg);
+      font-family:'BKoodak','Vazirmatn',system-ui,-apple-system,Segoe UI,Roboto,Arial,'Noto Sans',Tahoma,sans-serif;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:auto;padding:24px}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 24px;max-width:var(--maxw);margin:auto}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:42px;height:42px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-weight:800;color:var(--accent-ink);box-shadow:inset 0 0 0 2px rgba(0,0,0,.06)}
+    .brand h1{font-size:20px;margin:0}
+    .brand small{display:block;color:var(--muted);font-size:12px;margin-top:-2px}
+    .nav .right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#111;color:#fff;font-size:12px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--fg);border-radius:12px;font-weight:700;transition:.2s;background:#fff}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.cta{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+    .hero{padding:64px 24px 32px}
+    .wrap{max-width:var(--maxw);margin:auto;display:grid;gap:24px}
+    .kicker{display:inline-block;background:#111;color:#fff;padding:6px 12px;border-radius:999px;font-size:12px}
+    h2.title{font-size:36px;line-height:1.25;margin:12px 0 6px}
+    p.sub{color:var(--muted);margin:0 0 16px}
+    section{padding:32px 0}
+    .grid{display:grid;gap:16px}
+    @media(min-width:780px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
+    .card h3{margin:4px 0 8px;font-size:18px}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:1px dashed var(--border);padding:6px 10px;border-radius:999px;font-size:12px;background:#fff}
+    .price{font-size:28px;font-weight:800;margin:6px 0}
+    .features{list-style:none;margin:10px 0 0;padding:0}
+    .features li{padding:6px 0;display:flex;gap:8px;align-items:center}
+    .check{width:18px;height:18px;border-radius:6px;background:var(--accent);display:inline-block}
+    .sep{height:1px;background:var(--border);margin:18px 0}
+    footer{border-top:1px solid var(--border);padding:28px 0;margin-top:26px;color:#7a7a7a}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;padding:16px}
+    .modal{width:100%;max-width:460px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+    .modal h4{margin:0 0 10px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    input[type="text"],input[type="number"],select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);outline:none;background:#fff}
+    input:focus,select:focus{border-color:#bdbdbd}
+    .hint{font-size:12px;color:#666}
+    .muted{color:#777}
+    .toast{position:fixed;bottom:18px;right:18px;background:#111;color:#fff;border-radius:999px;padding:10px 14px;display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo">R</div>
+        <div>
+          <h1>رپورتاژینو</h1>
+          <small>پلتفرم خرید رپورتاژ و مدیریت اعتبار</small>
+        </div>
+      </div>
+      <div class="right">
+        <span id="balanceBadge" class="badge" title="اعتبار فعلی">اعتبار: ۰ تومان</span>
+        <a href="#pricing" class="btn">تعرفه‌ها</a>
+        <a href="#pricing" class="btn cta">انتخاب پلن</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap container">
+      <span class="kicker">خرید رپورتاژ | شارژ اعتبار با گیفت‌کارت</span>
+      <h2 class="title">پلن‌تو انتخاب کن، کد eBay یا PayPal وارد کن، اعتبارت اضافه می‌شه.</h2>
+      <p class="sub">ساده، امن، بی‌واسطه: کد eBay/PayPal رو وارد کن و در ادامه کد HTML یا فایل رپورتاژ رو با فرمت PDF یا word ارسال کن تا منتشر.</p>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="container">
+    <h3 style="margin:0 0 12px;font-size:22px">تعرفه‌ها</h3>
+    <p class="muted" style="margin-top:-6px">پس از انتخاب هر پلن، می‌تونی کد گیفت‌کارت eBay یا PayPal رو وارد کنی تا اعتبار اضافه بشه.</p>
+    <div class="grid cols-3" style="margin-top:12px">
+      <div class="card plan">
+        <span class="chip">پلن پایه</span>
+        <div class="price">۵,۵۷۵,۰۰۰ <span class="muted">تومان/رپورتاژ</span></div>
+        <ul class="features">
+          <li><span class="check"></span>انتشار در ۲ رسانه عمومی</li>
+          <li><span class="check"></span>۲ لینک فالو</li>
+          <li><span class="check"></span>گزارش لینک ۴۸ساعته</li>
+        </ul>
+        <div class="sep"></div>
+        <button class="btn cta choose-plan" data-amount="5575000">انتخاب این پلن</button>
+      </div>
+
+      <div class="card plan" style="border:2px solid var(--accent)">
+        <span class="chip">پلن رشد</span>
+        <div class="price">۹,۸۴۵,۵۰۰ <span class="muted">تومان/رپورتاژ</span></div>
+        <ul class="features">
+          <li><span class="check"></span>انتشار در ۳ رسانه عمومی + ۱ تخصصی</li>
+          <li><span class="check"></span>۳ لینک فالو + تصویر</li>
+          <li><span class="check"></span>تحویل ۲۴ساعته</li>
+        </ul>
+        <div class="sep"></div>
+        <button class="btn cta choose-plan" data-amount="9845500">انتخاب این پلن</button>
+      </div>
+
+      <div class="card plan">
+        <span class="chip">پلن حرفه‌ای</span>
+        <div class="price">۲۸,۱۹۰,۷۵۰ <span class="muted">تومان/رپورتاژ</span></div>
+        <ul class="features">
+          <li><span class="check"></span>انتشار در ۵ رسانه تخصصی</li>
+          <li><span class="check"></span>۵ لینک فالو + اسکیما</li>
+          <li><span class="check"></span>اولویت انتشار</li>
+        </ul>
+        <div class="sep"></div>
+        <button class="btn cta choose-plan" data-amount="28190750">انتخاب این پلن</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: Redeem -->
+  <div id="redeemModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="redeemTitle">
+    <div class="modal">
+      <h4 id="redeemTitle">افزودن اعتبار با گیفت‌کارت</h4>
+      <p class="muted" id="redeemPlanText">مبلغ انتخابی: —</p>
+      <div class="row" style="margin:6px 0 10px">
+        <label class="btn" style="cursor:pointer">
+          <input type="radio" name="provider" value="ebay" checked style="accent-color:#111"> eBay
+        </label>
+        <label class="btn" style="cursor:pointer">
+          <input type="radio" name="provider" value="paypal" style="accent-color:#111"> PayPal
+        </label>
+      </div>
+
+      <div style="margin-top:6px">
+        <label for="codeInput" style="font-weight:700">کد گیفت‌کارت</label>
+        <input id="codeInput" type="text" inputmode="numeric" placeholder="مثلاً ۱۳ رقم eBay یا ۱۶ کاراکتر PayPal"/>
+        <div id="codeHint" class="hint">eBay: دقیقاً ۱۳ رقم عددی • PayPal: ۱۶ کاراکتر الفانامریک (قابل تغییر)</div>
+      </div>
+
+      <div class="sep"></div>
+      <div class="row" style="justify-content:space-between">
+        <button id="closeModal" class="btn">انصراف</button>
+        <button id="confirmRedeem" class="btn cta">تأیید و افزودن اعتبار</button>
+      </div>
+      <div id="checking" class="hint" style="display:none;margin-top:10px">در حال بررسی کد…</div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <footer>
+    <div class="container">
+      <div class="sep"></div>
+      <div class="badge">© رپورتاژینو</div>
+      <span class="badge" style="background:var(--accent);color:var(--accent-ink)">انتخابی مناسب برای  بهبود جایگاه سایت در گوگل</span>
+    </div>
+  </footer>
+
+  <script>
+    // ====== Utils ======
+    const toToman = n => (Math.round(n||0)).toLocaleString('fa-IR') + ' تومان';
+    const $ = sel => document.querySelector(sel);
+
+    // ====== State ======
+    let balance = 0;
+    let selectedAmount = 0;
+
+    function renderBalance(){
+      $('#balanceBadge').textContent = 'اعتبار: ' + toToman(balance);
+    }
+    renderBalance();
+
+    // ====== Pricing actions ======
+    document.querySelectorAll('.choose-plan').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        selectedAmount = Number(btn.dataset.amount||0);
+        $('#redeemPlanText').textContent = 'مبلغ انتخابی: ' + toToman(selectedAmount);
+        openModal();
+      });
+    });
+
+    // ====== Modal logic ======
+    const modal = $('#redeemModal');
+    const toast = $('#toast');
+    const codeInput = $('#codeInput');
+    const codeHint = $('#codeHint');
+
+    function openModal(){
+      // reset UI
+      codeInput.value = '';
+      $('#checking').style.display = 'none';
+      modal.style.display = 'flex';
+      applyProviderRules();
+      codeInput.focus();
+    }
+    function closeModal(){
+      modal.style.display = 'none';
+    }
+    $('#closeModal').addEventListener('click', closeModal);
+
+    document.querySelectorAll('input[name="provider"]').forEach(r=>{
+      r.addEventListener('change', applyProviderRules);
+    });
+
+    function applyProviderRules(){
+      const provider = document.querySelector('input[name="provider"]:checked').value;
+      if(provider === 'ebay'){
+        codeInput.value = '';
+        codeInput.setAttribute('inputmode','numeric');
+        codeInput.setAttribute('maxlength','13');
+        codeInput.placeholder = '۱۳ رقم عددی e.g. 1234567890123';
+        codeHint.textContent = 'الگو: eBay دقیقاً ۱۳ رقم عددی';
+      }else{
+        codeInput.value = '';
+        codeInput.setAttribute('inputmode','text');
+        codeInput.setAttribute('maxlength','16');
+        codeInput.placeholder = '۱۶ کاراکتر الفانامریک e.g. A1B2C3D4E5F6G7H8';
+        codeHint.textContent = 'الگو: PayPal پیش‌فرض ۱۶ کاراکتر الفانامریک (قابل تغییر از کد)';
+      }
+    }
+
+    function validateCode(code, provider){
+      if(provider === 'ebay'){
+        return /^\d{13}$/.test(code);
+      }else{ // PayPal placeholder pattern (configurable)
+        return /^[A-Za-z0-9]{16}$/.test(code);
+      }
+    }
+
+    $('#confirmRedeem').addEventListener('click', ()=>{
+      const provider = document.querySelector('input[name="provider"]:checked').value;
+      const code = codeInput.value.trim();
+      if(!selectedAmount){ alert('لطفاً یک پلن انتخاب کنید.'); return; }
+      if(!validateCode(code, provider)){
+        alert(provider==='ebay' ? 'کد eBay باید دقیقاً ۱۳ رقم باشد.' : 'کد PayPal باید ۱۶ کاراکتر الفانامریک باشد.');
+        return;
+      }
+      $('#checking').style.display = 'block';
+      // شبیه‌سازی بررسی ~۲ ثانیه
+      setTimeout(()=>{
+        $('#checking').style.display = 'none';
+        balance += selectedAmount;
+        renderBalance();
+        closeModal();
+        showToast('اعتبار با موفقیت افزوده شد: ' + toToman(selectedAmount));
+      }, 2000);
+    });
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.style.display = 'inline-flex';
+      setTimeout(()=> toast.style.display = 'none', 3000);
+    }
+  </script>
+</body>
+</html>
